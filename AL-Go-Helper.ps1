@@ -207,7 +207,9 @@ function DownloadAndImportBcContainerHelper {
                 $ap = "$ENV:GITHUB_ACTION_PATH".Split('\')
                 if ($ap -and $ap.Count -gt 4) {
                     $folder = $ap[$ap.Count-5]
-                    $owner = $ap[$ap.Count-4]
+                    <#ST TESTING#>
+                    <# $owner = $ap[$ap.Count-4] #>
+                    $owner = "microsoft"
                     $repo = $ap[$ap.Count-3]
                     $branch = $ap[$ap.Count-2]
                     if ($folder -eq "_actions" -and $repo -eq "AL-Go-Actions") {
