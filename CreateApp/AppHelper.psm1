@@ -48,11 +48,11 @@ function UpdateManifest
     $appJson.Publisher = $publisher
     $appJson.Name = $name
     $appJson.Version = $version
-    $appJson.Logo = ""
-    $appJson.url = ""
+    $appJson.Logo = "logo/TSGLogo.png"
+    $appJson.url = "https://www.tsg.com/"
     $appJson.EULA = ""
     $appJson.privacyStatement = ""
-    $appJson.help = ""
+    $appJson.help = "https://www.tsg.com/customer-support/"
     "contextSensitiveHelpUrl" | ForEach-Object {
         if ($appJson.PSObject.Properties.Name -eq $_) { $appJson.PSObject.Properties.Remove($_) }
     }
@@ -114,6 +114,8 @@ function New-SampleApp
     New-Item  -Path $destinationPath -ItemType Directory -Force | Out-Null
     New-Item  -Path "$($destinationPath)\.vscode" -ItemType Directory -Force | Out-Null
     Copy-Item -path "$($alTemplatePath)\.vscode\launch.json" -Destination "$($destinationPath)\.vscode\launch.json"
+    New-Item -path "$($destinationPath)\logo" -ItemType Directory -Force | Out-Null
+    Copy-Item -path "$($alTemplatePath)\logo\TSGLogo.png" -Destination "$($destinationPath)\logo\TSGlogo.png"
 
     UpdateManifest -appJsonFile "$($destinationPath)\app.json" -name $name -publisher $publisher -idrange $idrange -version $version
     if ($sampleCode) {
